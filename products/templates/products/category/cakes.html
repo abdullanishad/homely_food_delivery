@@ -1,0 +1,73 @@
+{% extends "products/base.html" %}
+
+{% block content %}
+
+{% if messages %}
+{% for message in messages %}
+
+{{ message }}
+
+{% endfor %}
+{% endif %}
+{% load static %}
+
+<div class="container" style="overflow: auto;white-space: nowrap;">
+    <figure class="figure ">
+        <a href="{% url 'category-cakes' %}"><img src="static/products/default.jpg" class="figure-img rounded-circle m-3" alt="Cinque Terre" width="80" height="80">
+            <figcaption class="figure-caption text-center">cake</figcaption></a>
+    </figure>
+
+    <figure class="figure ">
+        <a href="#"><img src="static/products/default.jpg" class="figure-img rounded-circle m-3" alt="Cinque Terre" width="80" height="80">
+        <figcaption class="figure-caption text-center">cake</figcaption></a>
+    </figure>
+
+    <figure class="figure ">
+        <a href="#"><img src="static/products/default.jpg" class="rounded-circle m-3" alt="Cinque Terre" width="80" height="80">
+        <figcaption class="figure-caption text-center">cake</figcaption></a>
+    </figure>
+    <figure class="figure ">
+        <a href="#"><img src="static/products/default.jpg" class="rounded-circle m-3" alt="Cinque Terre" width="80" height="80">
+        <figcaption class="figure-caption text-center">cake</figcaption></a>
+    </figure>
+
+    <figure class="figure ">
+        <a href="#"><img src="static/products/default.jpg" class="rounded-circle m-3" alt="Cinque Terre" width="80" height="80">
+        <figcaption class="figure-caption text-center">cake</figcaption></a>
+    </figure>
+
+    <figure class="figure ">
+        <a href="#"><img src="static/products/default.jpg" class="rounded-circle m-3" alt="Cinque Terre" width="80" height="80">
+        <figcaption class="figure-caption text-center">cake</figcaption></a>
+    </figure>
+
+</div>
+
+<h5 class="lead" style="text-align:center">all cake products</h5>
+
+{% if context %}
+
+<div class="container">
+    <div class="row">
+
+        {% for item in context %}
+        <div class="col-6 col-md-2 p-1">
+            <a href="{{ item.get_absolute_url }}">
+                <img class="img-fluid" src="{{ item.photo.url }}" alt="invalid">
+
+                <h6  class="lead text-muted text-center">{{ item.title }}</h6>
+                <h5 class="lead text-muted text-center">Rs: {{ item.price }}</h5>
+            </a>
+        </div>
+
+
+        {% endfor %}
+    </div>
+</div>
+
+
+{% else %}
+<p>There are no books in the library.</p>
+{% endif %}
+{% endblock %}
+

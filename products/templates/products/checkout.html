@@ -1,0 +1,54 @@
+{% extends "products/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+{% if messages %}
+            {% for message in messages %}
+
+                {{ message }}
+
+            {% endfor %}
+          {% endif %}
+<br>
+
+<form action="" method="post">
+                    {% csrf_token %}
+                    <table>
+                        {{ form|crispy}}
+                    </table>
+                    <input type="submit" value="Confirm Order">
+                </form>
+{% if object %}
+
+<table class="table-sm">
+  <thead>
+    <tr>
+      <th scope="col text-center">order summary</th>
+    </tr>
+  </thead>
+
+
+<tbody>
+    {% for item in object %}
+
+    <tr>
+      <td>{{ item.item.title }}</td>
+      <td>{{ item.item.price }}</td>
+      <td>{{ item.quantity }}</td>
+
+    {% endfor %}
+</tr>
+      <tr>
+      <td scope="col-8">total amount payable:</td>
+      <td scope="col">{{ total }}</td>
+    </tr>
+  </tbody>
+
+
+</table>
+{% else %}
+<p>empty.</p>
+{% endif %}
+
+{% endblock %}
+

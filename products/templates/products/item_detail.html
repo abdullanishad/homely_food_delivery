@@ -1,0 +1,48 @@
+{% extends "products/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+{% if messages %}
+{% for message in messages %}
+
+{{ message }}
+
+{% endfor %}
+{% endif %}
+<div class="container">
+    <div class="row">
+
+        <div class="col-12 col-md-4 p-1">
+            <img class="img-fluid" src="{{ item.photo.url }}" alt="invalid">
+        </div>
+        <div class="col-12 col-md-8 p-3 text-center">
+             <h6  class="lead text-muted">{{ item.title }}</h6>
+                <h5 class="lead text-danger">Rs: {{ item.price }}</h5>
+            <p class="lead">  {{ item.category }}<br>
+            <hr>
+                <a href="{% url 'seller-items-filter' item.seller.name %}">more from: {{ item.seller }}<br></a>
+            <hr>
+          {{ item.description }}</p>
+        </div>
+
+    </div>
+</div>
+<!--<li>{{ item.title }}</li>
+<li>{{ item.price }}</li>
+<li>{{ item.category }}</li>
+<li>{{ item.seller }}</li>
+<li>{{ item.description }}</li>-->
+
+<form action="" method="post">
+    {% csrf_token %}
+    <table>
+        {{ form|crispy }}
+    </table>
+    <input type="submit" value="Add to cart">
+</form>
+
+
+
+{% endblock %}
+

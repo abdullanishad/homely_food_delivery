@@ -1,0 +1,38 @@
+{% extends "products/base.html" %}
+
+{% block content %}
+{% if object %}
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">item</th>
+      <th scope="col">price</th>
+      <th scope="col">qty</th>
+    </tr>
+  </thead>
+
+
+<tbody>
+    {% for item in object %}
+
+    <tr>
+      <td>{{ item.item.title }}</td>
+      <td>{{ item.item.price }}</td>
+      <td>{{ item.quantity }}</td>
+
+    {% endfor %}
+</tr>
+      <tr>
+      <td scope="col-8">total amount payable:</td>
+      <td scope="col">{{ total }}</td>
+    </tr>
+  </tbody>
+
+
+</table>
+    <a class='btn btn-success ml-2' href='/checkout/'>Proceed to checkout</a>
+{% else %}
+<p>empty.</p>
+{% endif %}
+{% endblock %}
